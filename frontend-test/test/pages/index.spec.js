@@ -17,7 +17,11 @@ describe("index.vueのテスト", () => {
   test("タイトルが表示されている", () => {
     // console.log(wrapper);
     const wrapper = mount(index, {
-      store
+      methods: {
+        doAction: function() {
+          this.$store.state.counter++;
+        }
+      }
     });
     store = new Vuex.Store({
       state: {},
