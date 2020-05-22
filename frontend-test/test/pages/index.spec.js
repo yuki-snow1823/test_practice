@@ -1,12 +1,25 @@
-import { mount } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
+import Vuex from "vuex";
 import index from "@/pages/index.vue";
+import { cloneDeep } from "lodash";
+import indexStore from "@/store/index.js"
 
-// 普通に通る
+const localVue = createLocalVue();
+localVue.use(Vuex);
+
 describe("index.vueのテスト", () => {
+  let store;
+  beforeEach(() => {
+    // const wrapper = mount(index);
+    store = new Vuex.Store(cloneDeep(indexStore));
+  });
   test("タイトルが表示されている", () => {
-    const wrapper = mount(index);
     // console.log(wrapper);
+    const wrapper = mount(index);
     expect(wrapper.find(".title")).toBeTruthy();
   });
+  test("カウント前の表示が0", () => {
+    const wrapper = mount(index);
+    expect(wrapper.find("a").value).toBeTruthy();
+  });
 });
-
