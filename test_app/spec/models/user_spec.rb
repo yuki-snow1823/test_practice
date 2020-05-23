@@ -16,5 +16,21 @@ RSpec.describe User, type: :model do
       # binding.pry
       expect(user.errors[:email]).to include('を入力してください')
     end
+
+    it '重複したメールアドレスであれば無効' do
+      User.create!(
+        email: 'test@example.com',
+        password: 'hogehoge',
+        password_confirmation: 'hogehoge'
+      )
+      user = User.new(
+        name: 'テスター',
+        email: 'test@example.com',
+        password: 'hogehoge',
+        password_confirmation: 'hogehoge'
+      )
+      user.valid?
+      expect(user.errors[:email]).to include('はすでに存在します')
+    end
   end
 end
