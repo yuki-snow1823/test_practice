@@ -1,1 +1,16 @@
+<%= flash[:success] %>
+
 <h1>ここはインデックスページです。</h1>
+
+<h2>あなたのメールは、<%= @user.email %>です。</h2>
+
+<h1>New comments</h1>
+<%= form_for(@comment) do |f| %>
+<%= f.text_field :context %>
+<%= f.submit 'Create Book' %>
+<% end %>
+
+<h4>body</h4>
+<% @comments.each do |f| %>
+<%= f.context %><br>
+<% end %>
