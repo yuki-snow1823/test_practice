@@ -1,9 +1,6 @@
-import { mount, createLocalVue } from "@vue/test-utils";
+import { mount, createLocalVue, shallowMount } from "@vue/test-utils";
 import Vuex from "vuex";
 import index from "@/pages/index.vue";
-import { cloneDeep } from "lodash";
-import indexStore from "@/store/index.js";
-import * as store from "@/store";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -14,19 +11,20 @@ describe("index.vueのテスト", () => {
     // const wrapper = mount(index);
     // store = new Vuex.Store(cloneDeep(indexStore));
     store = new Vuex.Store({
-      state: {}
+      state: { count: 0 }
     });
   });
   test("タイトルが表示されている", () => {
     // console.log(wrapper);
     const wrapper = mount(index, {
-      store
+      store,
+      localVue
     });
     expect(store.state.count).toBe(0);
     expect(wrapper.find(".title")).toBeTruthy();
   });
   test("カウント前の表示が0", () => {
-    const wrapper = mount(index);
-    expect(wrapper.find("a").value).toBeTruthy();
+    const wrapper = mount(index, { store, localVue });
+    expect(wrapper.find("a")).toBeTruthy();
   });
 });
