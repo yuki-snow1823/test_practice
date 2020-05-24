@@ -8,8 +8,6 @@ localVue.use(Vuex);
 describe("index.vueのテスト", () => {
   let store;
   beforeEach(() => {
-    // const wrapper = mount(index);
-    // store = new Vuex.Store(cloneDeep(indexStore));
     store = new Vuex.Store({
       state: { count: 0 }
     });
