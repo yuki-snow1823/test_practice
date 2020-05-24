@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
+  # letを試用
   let!(:user) { create :user }
-
+  let!(:comment) { create :comment }
   describe 'GET #index' do
     context 'ユーザが存在する場合' do
       before do
-        users_path user
         sign_in user
       end
       it '正常なレスポンスを返すこと' do
+        # binding.pry
         get users_path user
         expect(response.status).to eq 200
       end
