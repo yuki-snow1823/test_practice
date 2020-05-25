@@ -7,22 +7,18 @@ localVue.use(Vuex);
 
 describe("index.vueのテスト", () => {
   let store;
+  let wrapper
   beforeEach(() => {
     store = new Vuex.Store({
       state: { count: 0 }
     });
+    wrapper = mount(index, { store, localVue });
   });
-  test("タイトルが表示されている", () => {
-    // console.log(wrapper);
-    const wrapper = mount(index, {
-      store,
-      localVue
-    });
+  test("カウント前のステートの値が0", () => {
     expect(store.state.count).toBe(0);
-    expect(wrapper.find(".title")).toBeTruthy();
   });
-  test("カウント前の表示が0", () => {
-    const wrapper = mount(index, { store, localVue });
-    expect(wrapper.find("a")).toBeTruthy();
+  test("aタグを押すと表示が1になる", () => {
+    wrapper.find("a").trigger("click");
+    expect(wrapper.vm.$el).toBe(0);
   });
 });
