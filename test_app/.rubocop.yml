@@ -13,3 +13,4 @@ AllCops:
         - 'lib/tasks/*'
         - 'vendor/**/*'
         - 'path/ruby'
+        - 'node_modules/**/*'
