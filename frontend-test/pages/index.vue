@@ -6,7 +6,7 @@
     <div class="link"
         v-on:click="doAction">
       <a>
-        clicked: {{ $store.state.counter }}
+       {{$store.state.counter}}
       </a>
     </div>
   </section>
