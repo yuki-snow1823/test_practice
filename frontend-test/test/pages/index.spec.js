@@ -7,18 +7,26 @@ localVue.use(Vuex);
 
 describe("index.vueのテスト", () => {
   let store;
-  let wrapper
   beforeEach(() => {
+    // const wrapper = mount(index);
+    // store = new Vuex.Store(cloneDeep(indexStore));
     store = new Vuex.Store({
-      state: { count: 0 }
+      state: {
+        counter: 0
+      },
+      mutations: {
+        increment(state) {
+          state.counter++;
+        }
+      }
     });
-    wrapper = mount(index, { store, localVue });
   });
-  test("カウント前のステートの値が0", () => {
-    expect(store.state.count).toBe(0);
-  });
-  test("aタグを押すと表示が1になる", () => {
-    wrapper.find("a").trigger("click");
-    expect(wrapper.vm.$el).toBe(0);
+  test("aタグを押すと表示が2になる", () => {
+    const wrapper = shallowMount(index, { store, localVue });
+    wrapper.find(".link").trigger("click");
+    wrapper.find(".link").trigger("click");
+    expect(store.state.counter).toBe(2);
   });
 });
+
+// 全てのストアの要素を各テストに突っ込む必要があった。
