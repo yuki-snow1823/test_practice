@@ -6,7 +6,8 @@
     <div class="link"
         v-on:click="doAction">
       <a>
-       {{$store.state.counter}}
+       {{counter}}
+       <!-- $store.state.counterとせずに、compputedを使う -->
       </a>
     </div>
   </section>
@@ -23,7 +24,12 @@ export default {
   },
   methods: {
     doAction: function(){
-      this.$store.state.counter++;
+      this.$store.commit('increment');
+    }
+  },
+  computed: {
+    counter() {
+      return this.$store.state.counter;
     }
   }
 };
