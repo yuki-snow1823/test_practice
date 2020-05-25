@@ -6,7 +6,7 @@ FactoryBot.define do
   end
 
   factory :user_2 do
-    email { }
+    email {}
     password { "hogehoge" }
   end
 end

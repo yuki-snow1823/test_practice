@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:each) do
-    @user = create(:user) #ここで定義
+    @user = create(:user) # ここで定義
   end
 
   context "バリデーションについて" do

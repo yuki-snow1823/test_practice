@@ -35,10 +35,10 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
 
-# # 通常FactoryBotをつけないと、メソッドを呼べない
-#  user = FactoryBot.create(:user)
-#  # 上の設定を追加することで、FactoryBotの記述が省略できる。
-#  user = create(:user)
+  # # 通常FactoryBotをつけないと、メソッドを呼べない
+  #  user = FactoryBot.create(:user)
+  #  # 上の設定を追加することで、FactoryBotの記述が省略できる。
+  #  user = create(:user)
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -67,6 +67,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } #support directoryをrequire
-  config.include RequestSpecHelper, type: :request #type: :requestのときにRequestHelperをinclude
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } # support directoryをrequire
+  config.include RequestSpecHelper, type: :request # type: :requestのときにRequestHelperをinclude
 end
