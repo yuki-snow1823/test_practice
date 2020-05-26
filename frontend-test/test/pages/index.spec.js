@@ -23,12 +23,17 @@ describe("index.vueのテスト", () => {
   });
   test("aタグを2回押すと表示が2になる", () => {
     const wrapper = shallowMount(index, { store, localVue });
-    let i = 0
+    let i = 0;
     // 普通にjsの文法は当然使える
     for (i = 0; i < 2; i++) {
       wrapper.find(".link").trigger("click");
     }
     expect(store.state.counter).toBe(2);
+  });
+
+  it("renders the correct message", () => {
+    const wrapper = shallowMount(index, { store, localVue });
+    expect(wrapper.text()).toBe("Hello");
   });
 });
 
